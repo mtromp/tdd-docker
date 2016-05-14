@@ -19,8 +19,9 @@ describe "Dockerfile" do
   end
 
 	context "Verify correct packages are installed" do
-		it "install apache" do
+		it "install and run apache" do
 			expect(package("apache2")).to be_installed
+			expect(service("apache2")).to be_running 
 		end
 	end
 
