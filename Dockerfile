@@ -4,6 +4,7 @@ MAINTAINER Marianne Tromp <mtromp@mtromp.com>
 USER root
 
 RUN apt-get update && apt-get install apache2	 -y
+RUN apt-get install php5 -y
 
 env APACHE_RUN_USER    www-data
 env APACHE_RUN_GROUP   www-data
@@ -16,4 +17,3 @@ env LANG               C
 CMD service apache2 start && tail -F /var/log/apache2/error.log
 
 
-#["apache2", "-D", "FOREGROUND"]

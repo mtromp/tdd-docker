@@ -23,8 +23,11 @@ describe "Dockerfile" do
 			expect(package("apache2")).to be_installed
 			expect(service("apache2")).to be_running 
 		end
-	end
 
+	  it "install php5" do 
+	    expect(package("php5")).to be_installed
+	  end 
+	end
   def os_version
     command("lsb_release -a").stdout
   end
