@@ -1,4 +1,6 @@
 require 'serverspec'
+require 'docker-api'
+require 'rspec'
 require 'net/ssh'
 
 set :backend, :ssh
