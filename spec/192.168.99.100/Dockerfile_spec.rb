@@ -4,11 +4,11 @@ require 'spec_helper.rb'
 
 describe 'Dockerfile' do
     before(:all) do
-        image = Docker::Image.build_from_dir('.')
+        @image = Docker::Image.build_from_dir('.')
 
         set :os, family: :debian
         set :backend, :docker
-        set :docker_image, image.id
+        set :docker_image, @image.id
     end
 
     context 'Verifies that correct operating system is installed' do
@@ -31,9 +31,7 @@ describe 'Dockerfile' do
         command('lsb_release -a').stdout
     end
 
-    context 'Configure the default http port' do
-        it 'exposes port 80' do
-            expect(port(80)).to be_listening
-        end
-    end
+       it 'should expose the default port 80' do
+         expect(@image.json['ContainerConfig']['ExposedPorts']).to include("80/tcp")
+   end
 end
